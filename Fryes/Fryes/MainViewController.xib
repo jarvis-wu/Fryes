@@ -12,7 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Fryes" customModuleProvider="target">
             <connections>
+                <outlet property="countdownLabel" destination="N2d-dY-o4H" id="HUb-yV-G3t"/>
+                <outlet property="dateTimeLabel" destination="xJ8-TK-4P7" id="FEC-fI-lMa"/>
                 <outlet property="notificationButton" destination="J8Z-se-MIr" id="kCJ-IH-Ep2"/>
+                <outlet property="opponentTeamLabel" destination="DLt-9w-obr" id="tGM-Ha-2g9"/>
+                <outlet property="torontoTeamLabel" destination="iTf-Ff-iUZ" id="Pvk-zw-Dad"/>
+                <outlet property="versusLabel" destination="4Ri-yW-5bU" id="64f-aA-Crb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewStatisticsButton" destination="STG-ap-vOs" id="ONZ-Eh-NaY"/>
             </connections>
@@ -40,7 +45,7 @@
                         <constraint firstAttribute="height" constant="70" id="28S-8x-Fno"/>
                     </constraints>
                     <attributedString key="attributedText">
-                        <fragment content="In 3 Days">
+                        <fragment content=" ">
                             <attributes>
                                 <color key="NSColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <font key="NSFont" size="50" name="AvenirNext-Bold"/>
@@ -56,7 +61,7 @@
                         <constraint firstAttribute="height" constant="35" id="z0B-yA-Cxl"/>
                     </constraints>
                     <attributedString key="attributedText">
-                        <fragment content="Sun 11/18 8:00 PM">
+                        <fragment content=" ">
                             <attributes>
                                 <color key="NSColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <font key="NSFont" size="28" name="AvenirNext-Bold"/>
@@ -67,7 +72,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="h1b-hR-T7W">
-                    <rect key="frame" x="0.0" y="159" width="375" height="280"/>
+                    <rect key="frame" x="0.0" y="159" width="375" height="285"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTf-Ff-iUZ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
@@ -75,7 +80,7 @@
                                 <constraint firstAttribute="height" constant="110" id="Rwm-58-M7V"/>
                             </constraints>
                             <attributedString key="attributedText">
-                                <fragment content="Toronto  Raptors">
+                                <fragment content="Toronto Raptors">
                                     <attributes>
                                         <color key="NSColor" red="0.79607843137254897" green="0.094117647058823528" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <font key="NSFont" size="50" name="AvenirNext-Bold"/>
@@ -85,29 +90,22 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ri-yW-5bU">
-                            <rect key="frame" x="0.0" y="110" width="375" height="60"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ri-yW-5bU">
+                            <rect key="frame" x="0.0" y="110" width="375" height="45"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="Ve1-CS-To5"/>
+                                <constraint firstAttribute="height" constant="45" id="Ve1-CS-To5"/>
                             </constraints>
-                            <attributedString key="attributedText">
-                                <fragment content="VS">
-                                    <attributes>
-                                        <color key="NSColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <font key="NSFont" size="50" name="AvenirNext-Bold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.90000000000000002" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="50"/>
+                            <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLt-9w-obr">
-                            <rect key="frame" x="0.0" y="170" width="375" height="110"/>
+                            <rect key="frame" x="0.0" y="155" width="375" height="130"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="110" id="lnl-C2-awQ"/>
+                                <constraint firstAttribute="height" constant="130" id="lnl-C2-awQ"/>
                             </constraints>
                             <attributedString key="attributedText">
-                                <fragment content="Golden State Warriors">
+                                <fragment content=" ">
                                     <attributes>
                                         <color key="NSColor" red="0.0" green="0.40784313725490196" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <font key="NSFont" size="50" name="AvenirNext-Bold"/>
@@ -125,7 +123,7 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8Z-se-MIr">
-                    <rect key="frame" x="30" y="665" width="315" height="44"/>
+                    <rect key="frame" x="30" y="670" width="315" height="44"/>
                     <color key="backgroundColor" red="0.79607843140000001" green="0.094117647060000004" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Thf-k2-SwK"/>
@@ -134,6 +132,9 @@
                     <state key="normal" title="Keep Me Notified">
                         <color key="titleColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="didPressNotificationButton:" destination="-1" eventType="touchUpInside" id="BQl-cF-BaU"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STG-ap-vOs">
                     <rect key="frame" x="30" y="734" width="315" height="44"/>
@@ -145,18 +146,21 @@
                     <state key="normal" title="View Statistics">
                         <color key="titleColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="didPressViewStatisticsButton:" destination="-1" eventType="touchUpInside" id="VNj-rC-7Co"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="N2d-dY-o4H" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="0uz-N9-QOu"/>
                 <constraint firstItem="xJ8-TK-4P7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5c1-3j-JFW"/>
                 <constraint firstItem="h1b-hR-T7W" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5mj-ki-hGP"/>
                 <constraint firstItem="STG-ap-vOs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="8JN-r7-mcR"/>
                 <constraint firstItem="N2d-dY-o4H" firstAttribute="top" secondItem="d39-jy-VPX" secondAttribute="top" constant="40" id="9PV-9c-uSA"/>
                 <constraint firstItem="N2d-dY-o4H" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="BTe-rQ-uMg"/>
-                <constraint firstItem="N2d-dY-o4H" firstAttribute="centerX" secondItem="d39-jy-VPX" secondAttribute="centerX" id="EO9-G1-r5n"/>
                 <constraint firstItem="xJ8-TK-4P7" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Kj1-PM-w7m"/>
-                <constraint firstItem="STG-ap-vOs" firstAttribute="top" secondItem="J8Z-se-MIr" secondAttribute="bottom" constant="25" id="Oo5-wh-43l"/>
+                <constraint firstItem="STG-ap-vOs" firstAttribute="top" secondItem="J8Z-se-MIr" secondAttribute="bottom" constant="20" id="Oo5-wh-43l"/>
                 <constraint firstItem="d39-jy-VPX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Q1f-Lj-bNz"/>
                 <constraint firstItem="J8Z-se-MIr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="ULf-3g-y5K"/>
                 <constraint firstItem="STG-ap-vOs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="VkP-JL-5ym"/>
