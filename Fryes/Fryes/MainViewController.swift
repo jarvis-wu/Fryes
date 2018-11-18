@@ -9,33 +9,34 @@
 import UIKit
 
 class Game {
+    var homeId: String
     var homeAbbr: String
     var homeCity: String
     var homeNickname: String
+    var visitorId: String
     var visitorAbbr: String
     var visitorCity: String
     var visitorNickname: String
     var dateTime: Date
+    var opponentBrandColor: UIColor
     
-    init(homeAbbr: String, homeCity: String, homeNickname: String, visitorAbbr: String, visitorCity: String, visitorNickname: String, dateTime: Date) {
+    init(homeId:String, homeAbbr: String, homeCity: String, homeNickname: String, visitorId: String, visitorAbbr: String, visitorCity: String, visitorNickname: String, dateTime: Date, opponentBrandColor: UIColor) {
+        self.homeId = homeId
         self.homeAbbr = homeAbbr
         self.homeCity = homeCity
         self.homeNickname = homeNickname
+        self.visitorId = visitorId
         self.visitorAbbr = visitorAbbr
         self.visitorCity = visitorCity
         self.visitorNickname = visitorNickname
         self.dateTime = dateTime
+        self.opponentBrandColor = opponentBrandColor
     }
 }
 
 class MainViewController: UIViewController {
 
-    var nextGame: Game! {
-        didSet {
-            guard nextGame != nil else { return }
-            updateUI()
-        }
-    }
+    var nextGame: Game!
     
     @IBOutlet weak var torontoTeamLabel: UILabel!
     @IBOutlet weak var opponentTeamLabel: UILabel!
@@ -49,7 +50,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         notificationButton.layer.cornerRadius = 10
         viewStatisticsButton.layer.cornerRadius = 10
-        getNextGameInfo()
+        getNextGameInfo { (completed) in
+            if completed { self.updateUI() }
+        }
     }
     
     @IBAction func didPressNotificationButton(_ sender: Any) {
@@ -76,7 +79,7 @@ class MainViewController: UIViewController {
         present(GameViewController(), animated: true, completion: nil)
     }
     
-    private func getNextGameInfo() {
+    private func getNextGameInfo(completion: @escaping (Bool) -> ()) {
         let teamName = "raptors"
         let year = Calendar.current.component(.year, from: Date())
         let url = URL(string: "https://data.nba.net/json/cms/\(year)/team/\(teamName)/schedule.json")!
@@ -91,6 +94,7 @@ class MainViewController: UIViewController {
                 let games = sports_content["game"] as! [[String : Any]]
                 for game in games {
                     let home = game["home"] as! [String : Any]
+                    let homeId = home["id"] as! String
                     let homeAbbr = home["abbreviation"] as! String
                     let homeCity = home["city"] as! String
                     let homeNickname = home["nickname"] as! String
@@ -103,13 +107,35 @@ class MainViewController: UIViewController {
                         continue
                     } else {
                         let visitor = game["visitor"] as! [String : Any]
+                        let visitorId = visitor["id"] as! String
                         let visitorAbbr = visitor["abbreviation"] as! String
                         let visitorCity = visitor["city"] as! String
                         let visitorNickname = visitor["nickname"] as! String
-                        self.nextGame = Game(homeAbbr: homeAbbr, homeCity: homeCity, homeNickname: homeNickname, visitorAbbr: visitorAbbr, visitorCity: visitorCity, visitorNickname: visitorNickname, dateTime: dateTime)
+                        var opponentBrandColor = UIColor.white
+                        self.getBrandColor(teamTricode: isAtHome ? visitorAbbr : homeAbbr, completion: { (color) in
+                            opponentBrandColor = color ?? UIColor.white
+                            self.nextGame = Game(homeId: homeId, homeAbbr: homeAbbr, homeCity: homeCity, homeNickname: homeNickname, visitorId: visitorId, visitorAbbr: visitorAbbr, visitorCity: visitorCity, visitorNickname: visitorNickname, dateTime: dateTime, opponentBrandColor: opponentBrandColor)
+                            completion(true)
+                        })
                         break
                     }
                 }
+            }
+        }.resume()
+    }
+    
+    private func getBrandColor(teamTricode: String, completion: @escaping (UIColor?) -> ()) {
+        let url = URL(string: "https://data.nba.net/json/ge/brands.json")!
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard error == nil, let data = data else {
+                print(error!.localizedDescription); return
+            }
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let jsonRoot = json as? [[String : Any]] {
+                guard let teamDict = jsonRoot.first(where: { ($0["tricode"] as! String) == teamTricode}) else { return }
+                let teamColorString = teamDict["primary"] as! String
+                let teamColorHexValue = UIColor.intFromHexString(hexStr: teamColorString)
+                completion(UIColor(rgb: Int(teamColorHexValue)))
             }
         }.resume()
     }
@@ -124,7 +150,7 @@ class MainViewController: UIViewController {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineHeightMultiple = 0.65
             paragraphStyle.alignment = .center
-            let opponentColor = Constant.TeamColors[isAtHome ? self.nextGame.visitorAbbr : self.nextGame.homeAbbr] ?? UIColor.white
+            let opponentColor = self.nextGame.opponentBrandColor
             let opponentString = NSAttributedString(string: isAtHome ? "\(self.nextGame.visitorCity)\n\(self.nextGame.visitorNickname)" : "\(self.nextGame.homeCity)\n\(self.nextGame.homeNickname)", attributes: [.paragraphStyle: paragraphStyle, .foregroundColor: opponentColor])
             self.opponentTeamLabel.attributedText = opponentString
             let dateFormatter = DateFormatter()
