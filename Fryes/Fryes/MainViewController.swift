@@ -71,6 +71,8 @@ class MainViewController: UIViewController {
     
     @IBAction func didPressViewStatisticsButton(_ sender: Any) {
         // for now using this to test GameVC
+        // Use the following api to load team avg stats
+        // http://data.nba.net/json/cms/{year}/statistics/{teamSlug}/regseason_stats_and_rankings.json
         present(GameViewController(), animated: true, completion: nil)
     }
     

@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class Constant {
+    // TODO: instead, get brand colors from here:
+    // http://data.nba.net/json/ge/brands.json
     static let TeamColors = [
         "BOS" : UIColor(rgb: 0x007A33),
         "CHI" : UIColor(rgb: 0xCE1141),
