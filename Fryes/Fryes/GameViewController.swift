@@ -11,7 +11,7 @@ import UIKit
 class GameViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // hardcode data for testing
-    let data = [("Danny Green", "1st 09:16"),
+    var data = [("Danny Green", "1st 09:16"),
                 ("Kyle Lowry", "1st 04:02"),
                 ("Danny Green", "2nd 10:30"),
                 ("Kawhi Leonard", "2nd 08:06"),
@@ -24,6 +24,8 @@ class GameViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var tableBackgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +33,15 @@ class GameViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setupUI()
         messageTableView.dataSource = self
         messageTableView.delegate = self
-        messageTableView.rowHeight = 40
     }
     
     private func setupUI() {
+        messageTableView.rowHeight = 40
         progressBar.transform = CGAffineTransform(scaleX: 1, y: 2)
         progressBar.layer.cornerRadius = 2
         progressBar.clipsToBounds = true
+        dismissButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        dismissButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     
     private func registerTableViewCells() {
@@ -59,6 +63,27 @@ class GameViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat.leastNormalMagnitude
+    }
+    
+    @IBAction func didPressDismissButton(_ sender: Any) {
+//        // below is for test
+//        data.append(("Test Player", "*th **:**"))
+//        messageTableView.reloadData()
+//        DispatchQueue.main.async {
+//            let indexPath = IndexPath(row: self.data.count - 1, section: 0)
+//            self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        }
+//        // above is for test
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let gradientMaskLayer = CAGradientLayer()
+        gradientMaskLayer.frame = tableBackgroundView.bounds
+        gradientMaskLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor.clear.cgColor]
+        gradientMaskLayer.locations = [0, 0.05, 0.95, 1]
+        tableBackgroundView.layer.mask = gradientMaskLayer
     }
 
 }

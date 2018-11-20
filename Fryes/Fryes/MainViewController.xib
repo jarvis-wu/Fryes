@@ -122,52 +122,54 @@
                         <constraint firstItem="4Ri-yW-5bU" firstAttribute="width" secondItem="h1b-hR-T7W" secondAttribute="width" id="Jcg-GS-Vvg"/>
                     </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8Z-se-MIr">
-                    <rect key="frame" x="30" y="670" width="315" height="44"/>
-                    <color key="backgroundColor" red="0.79607843140000001" green="0.094117647060000004" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Thf-k2-SwK"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                    <state key="normal" title="Keep Me Notified">
-                        <color key="titleColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="didPressNotificationButton:" destination="-1" eventType="touchUpInside" id="BQl-cF-BaU"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STG-ap-vOs">
-                    <rect key="frame" x="30" y="734" width="315" height="44"/>
-                    <color key="backgroundColor" red="0.79607843140000001" green="0.094117647060000004" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="51N-Rl-Ne3"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                    <state key="normal" title="View Statistics">
-                        <color key="titleColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="didPressViewStatisticsButton:" destination="-1" eventType="touchUpInside" id="VNj-rC-7Co"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iHn-5e-Gfs">
+                    <rect key="frame" x="30" y="670" width="315" height="108"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8Z-se-MIr">
+                            <rect key="frame" x="0.0" y="0.0" width="315" height="44"/>
+                            <color key="backgroundColor" red="0.79607843140000001" green="0.094117647060000004" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Thf-k2-SwK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <state key="normal" title="Keep Me Notified">
+                                <color key="titleColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="didPressNotificationButton:" destination="-1" eventType="touchUpInside" id="BQl-cF-BaU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STG-ap-vOs">
+                            <rect key="frame" x="0.0" y="64" width="315" height="44"/>
+                            <color key="backgroundColor" red="0.79607843140000001" green="0.094117647060000004" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="51N-Rl-Ne3"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <state key="normal" title="Watch Live Updates">
+                                <color key="titleColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="didPressViewStatisticsButton:" destination="-1" eventType="touchUpInside" id="VNj-rC-7Co"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="N2d-dY-o4H" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="0uz-N9-QOu"/>
                 <constraint firstItem="xJ8-TK-4P7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5c1-3j-JFW"/>
                 <constraint firstItem="h1b-hR-T7W" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5mj-ki-hGP"/>
-                <constraint firstItem="STG-ap-vOs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="8JN-r7-mcR"/>
-                <constraint firstItem="N2d-dY-o4H" firstAttribute="top" secondItem="d39-jy-VPX" secondAttribute="top" constant="40" id="9PV-9c-uSA"/>
+                <constraint firstItem="iHn-5e-Gfs" firstAttribute="top" secondItem="xJ8-TK-4P7" secondAttribute="bottom" constant="78" id="7uG-zv-X0G"/>
                 <constraint firstItem="N2d-dY-o4H" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="BTe-rQ-uMg"/>
+                <constraint firstItem="iHn-5e-Gfs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="Bfn-o8-MFS"/>
                 <constraint firstItem="xJ8-TK-4P7" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Kj1-PM-w7m"/>
-                <constraint firstItem="STG-ap-vOs" firstAttribute="top" secondItem="J8Z-se-MIr" secondAttribute="bottom" constant="20" id="Oo5-wh-43l"/>
+                <constraint firstItem="iHn-5e-Gfs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Lwp-UV-QAA"/>
                 <constraint firstItem="d39-jy-VPX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Q1f-Lj-bNz"/>
-                <constraint firstItem="J8Z-se-MIr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="ULf-3g-y5K"/>
-                <constraint firstItem="STG-ap-vOs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="VkP-JL-5ym"/>
                 <constraint firstAttribute="bottom" secondItem="d39-jy-VPX" secondAttribute="bottom" constant="10" id="W6V-Lg-4Cx"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="STG-ap-vOs" secondAttribute="bottom" id="acE-0f-d5j"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iHn-5e-Gfs" secondAttribute="bottom" id="cRa-yx-3Lf"/>
                 <constraint firstItem="h1b-hR-T7W" firstAttribute="top" secondItem="v2T-Nu-IFm" secondAttribute="bottom" constant="35" id="g3f-jt-eTK"/>
-                <constraint firstItem="J8Z-se-MIr" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="nd0-xc-GSk"/>
                 <constraint firstItem="h1b-hR-T7W" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="oEI-D2-h2b"/>
                 <constraint firstItem="v2T-Nu-IFm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="qCy-OK-3dV"/>
                 <constraint firstItem="xJ8-TK-4P7" firstAttribute="top" secondItem="N2d-dY-o4H" secondAttribute="bottom" id="swP-LJ-63g"/>
